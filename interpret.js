@@ -10,7 +10,7 @@ if (!args[0]) {
 }
 //argument-ifier
 var options = {}
-var fileToCompile = args[0];
+var fileToCompile = args[0].replace(/STAR/,'★');
 for (var i = 1; i < args.length; i++) { //skipping filename-to-compile by starting at 1
   if (args[i].indexOf('-')==0) {
     if(i+1==args.length || args[i+1].indexOf('-')==0) {
@@ -25,6 +25,7 @@ if(!exists(fileToCompile)) {
   l.error(fileToCompile + " could not be found or is not a compile-able file.");
   process.exit(1);
 }
+if (/\.★js$/.test(fileToCompile) === false)
 
 function exists(path) {
   try {
