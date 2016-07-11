@@ -29,6 +29,16 @@ if (/\.★js$/.test(fileToCompile) === false) {
   l.warn("You should really use .★js as the file name, it looks really cool.");
 }
 
+//Let's start the actual interpreter stuff!
+
+var f = fs.readFileSync(fileToCompile); //file
+var cdf = "";                           //file compiled
+var arrf = f.split('\n');
+arrf.forEach((currLine, index) => {
+  //do stuff to currLine
+});
+cdf = arrf.join('\n')
+
 function exists(path) {
   try {
     fs.accessSync(path, fs.F_OK);
