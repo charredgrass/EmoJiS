@@ -1,9 +1,11 @@
 //Usage: node interpret.js [filename] [flags]
 var fs = require('fs');
+var colors = require('colors'); //100% necessary.
+var l = require('./tools/logs');
 
 var args = process.argv.slice(2);
 if (!args[0]) {
-  console.log("Error: missing filename arguments.");
+  l.error("Error: missing filename arguments.");
   process.exit(1);
 }
 //argument-ifier
@@ -20,7 +22,7 @@ for (var i = 1; i < args.length; i++) { //skipping filename-to-compile by starti
 }
 
 if(!exists(fileToCompile)) {
-  console.log(fileToCompile + " could not be found or is not a compile-able file.");
+  l.error(fileToCompile + " could not be found or is not a compile-able file.");
   process.exit(1);
 }
 
