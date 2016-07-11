@@ -25,7 +25,9 @@ if(!exists(fileToCompile)) {
   l.error(fileToCompile + " could not be found or is not a compile-able file.");
   process.exit(1);
 }
-if (/\.★js$/.test(fileToCompile) === false)
+if (/\.★js$/.test(fileToCompile) === false) {
+  l.warn("You should really use .★js as the file name, it looks really cool.");
+}
 
 function exists(path) {
   try {
