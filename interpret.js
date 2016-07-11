@@ -1,7 +1,7 @@
 //Usage: node interpret.js [filename] [flags]
-var fs = require('fs');
-var colors = require('colors'); //100% necessary.
-var l = require('./tools/logs');
+var fs = require("fs");
+var colors = require("colors"); //100% necessary.
+var l = require("./tools/logs");
 
 var args = process.argv.slice(2);
 if (!args[0]) {
@@ -10,10 +10,10 @@ if (!args[0]) {
 }
 //argument-ifier
 var options = {}
-var fileToCompile = args[0].replace(/STAR/,'★');
+var fileToCompile = args[0].replace(/STAR/,"★");
 for (var i = 1; i < args.length; i++) { //skipping filename-to-compile by starting at 1
-  if (args[i].indexOf('-')==0) {
-    if(i+1==args.length || args[i+1].indexOf('-')==0) {
+  if (args[i].indexOf("-")===0) {
+    if(i+1==args.length || args[i+1].indexOf("-")===0) {
       options[args[i].slice(1)] = null;
     } else {
       options[args[i].slice(1)] = args[i+1];
