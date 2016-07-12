@@ -1,6 +1,6 @@
 {
   "name": "emoJiS-interpreter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An emoji-based JavaScript interpreter.",
   "keywords": ["interpreter","emoji"],
   "homepage":"https://github.com/charredgrass/emoJiS/",
