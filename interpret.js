@@ -35,7 +35,7 @@ var f = fs.readFileSync(fileToCompile).toString("utf-8"); //file
 var cdf = "";                           //file compiled
 var arrf = f.split("\n");
 arrf = arrf.map((currLine, index) => {
-  return processify(currLine)
+  return processify(currLine);
 });
 cdf = arrf.join("\n");
 
