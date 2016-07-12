@@ -58,6 +58,8 @@ function exists(path) {
 
 function processify(text) {
   var ret = text;
-  ret = ret.replace(/👋🌎/, "console.log(\"Hello World\");"); // 👋 matches any hand, [🏻🏼🏽🏾🏿]? matches any race of said hand,
+  ret = ret.replace(/👋🌎/, "console.log(\"Hello World\");");
+  ret = ret.replace(/🔟/,"10");
+  ret = ret.replace(/🔢/, "Math.random()")
   return ret;
 }
