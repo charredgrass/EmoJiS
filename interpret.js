@@ -31,13 +31,21 @@ if (/\.★js$/.test(fileToCompile) === false) {
 
 //Let's start the actual interpreter stuff!
 
-var f = fs.readFileSync(fileToCompile); //file
+var f = fs.readFileSync(fileToCompile).toString('utf-8'); //file
 var cdf = "";                           //file compiled
 var arrf = f.split('\n');
-arrf.forEach((currLine, index) => {
-  //do stuff to currLine
+arrf = arrf.map((currLine, index) => {
+  return processify(currLine)
 });
-cdf = arrf.join('\n')
+cdf = arrf.join('\n');
+
+nfn = fileToCompile.replace(/★/g,'');
+fs.writeFile(nfn, cdf, function(err) {
+    if(err) {
+        l.error(err);
+    }
+    l.log("File compiled and saved, saved as " + nfn);
+});
 
 function exists(path) {
   try {
@@ -46,4 +54,10 @@ function exists(path) {
     return false;
   }
   return true;
+}
+
+function processify(text) {
+  var ret = text;
+  ret = ret.replace(/👋🌎/, "console.log(\"Hello World\");") // 👋 matches any hand, [🏻🏼🏽🏾🏿]? matches any race of said hand,
+  return ret;
 }
