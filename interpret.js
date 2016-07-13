@@ -1,6 +1,5 @@
 //Usage: node interpret.js [filename] [flags]
 var fs = require("fs");
-var colors = require("colors"); //100% necessary.
 var l = require("./tools/logs");
 
 var args = process.argv.slice(2);
@@ -57,9 +56,18 @@ function exists(path) {
 }
 
 function processify(text) {
-  var ret = text;
-  ret = ret.replace(/👋[🏻🏼🏽🏾🏿]?🌎/, "console.log(\"Hello World\");");
-  ret = ret.replace(/🔟/,"10");
-  ret = ret.replace(/🔢/, "Math.random()")
-  return ret;
+  var ret = "";
+  var hold = [...text];
+  var oparen = 0;
+  for (var i = 0;  i < hold.length; i++) {
+    var currChar = hold[i];
+    //temporary:
+    if (currChar === "👋") {
+      ret += "console.log(";
+      oparen++;
+    } else if (currChar === "🌎") {
+      ret += "\"Hello World!\"";
+    }
+  }
+  return ret + ")".repeat(oparen);
 }

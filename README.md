@@ -3,7 +3,8 @@ A JavaScript interpreter with Unicode emojis. ✏ with ❤ by charredgrass.
 
 ##Dependencies
 
-* node.js to compile, as well as the colors npm module
+* node.js v6
+    * Optional: the npm module `colors`
 
 ##Usage
 
@@ -25,4 +26,4 @@ Similar to Pyth converting code to Python, EmoJiS translates your emojis into Ja
 
 (*see [HelloWorld.★js](./test/HelloWorld.★js)*) This compiles into
 
-    console.log("Hello World!"); 
+    console.log("Hello World!");
