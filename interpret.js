@@ -27,7 +27,7 @@ if(!exists(fileToCompile)) {
 if (/\.★js$/.test(fileToCompile) === false) {
   l.warn("You should really use .★js as the file name, it looks really cool.");
 }
-
+const tokens = [{token:"👋", to: "console.log(", parens: 1},{token:"🌎", to:"\"Hello World!\""}];
 //Let's start the actual interpreter stuff!
 
 var f = fs.readFileSync(fileToCompile).toString("utf-8"); //file
@@ -55,19 +55,21 @@ function exists(path) {
   return true;
 }
 
+
+
 function processify(text) {
+  if (text==="") return "";
   var ret = "";
   var hold = [...text];
   var oparen = 0;
   for (var i = 0;  i < hold.length; i++) {
     var currChar = hold[i];
-    //temporary:
-    if (currChar === "👋") {
-      ret += "console.log(";
-      oparen++;
-    } else if (currChar === "🌎") {
-      ret += "\"Hello World!\"";
+    for (var t = 0; t < tokens.length; t++) {
+      if (currChar === tokens[t].token) {
+        ret += tokens[t].to
+        oparen += (tokens[t].parens ? tokens[t].parens : 0);
+      }
     }
   }
-  return ret + ")".repeat(oparen);
+  return ret + ")".repeat(oparen) + ";";
 }
