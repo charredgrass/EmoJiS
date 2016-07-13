@@ -27,16 +27,20 @@ if(!exists(fileToCompile)) {
 if (/\.★js$/.test(fileToCompile) === false) {
   l.warn("You should really use .★js as the file name, it looks really cool.");
 }
-const tokens = [{token:"👋", to: "console.log(", parens: 1},{token:"🌎", to:"\"Hello World!\""}];
+
+var constants = JSON.parse(fs.readFileSync("./lib/tokens.json"));
+var tokens = JSON.parse(fs.readFileSync("./lib/tokens.json"));
+tokens = [...constants, ...tokens];
 //Let's start the actual interpreter stuff!
 
 var f = fs.readFileSync(fileToCompile).toString("utf-8"); //file
-var cdf = "";                           //file compiled
+var preamble = fs.readFileSync("./lib/preamble.js").toString("utf-8");
+var cdf = "";                                             //file compiled
 var arrf = f.split("\n");
 arrf = arrf.map((currLine, index) => {
   return processify(currLine);
 });
-cdf = arrf.join("\n");
+cdf = preamble + "\n" + arrf.join("\n");
 
 var nfn = fileToCompile.replace(/★/g,"");
 fs.writeFile(nfn, cdf, function(err) {
@@ -66,7 +70,7 @@ function processify(text) {
     var currChar = hold[i];
     for (var t = 0; t < tokens.length; t++) {
       if (currChar === tokens[t].token) {
-        ret += tokens[t].to
+        ret += tokens[t].to;
         oparen += (tokens[t].parens ? tokens[t].parens : 0);
       }
     }

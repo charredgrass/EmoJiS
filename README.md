@@ -27,3 +27,5 @@ Similar to Pyth converting code to Python, EmoJiS translates your emojis into Ja
 (*see [HelloWorld.★js](./test/HelloWorld.★js)*) This compiles into
 
     console.log("Hello World!");
+
+(ignoring macros.)
